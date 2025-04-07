@@ -90,3 +90,76 @@ Este sistema contempla três áreas principais: **Administrativa**, **Portal do 
 - Prescrever medicamentos
 - Solicitar exames
 - Ver histórico do paciente
+
+
+
+# Sistema de Gestão para Clínica Médica
+
+## Divisão de Tarefas por Desenvolvedor
+
+### Murilo – Gestão de Médicos e Agenda
+- Listar médicos  
+- Cadastrar médico  
+- Editar dados do médico (nome, CRM, especialidade etc.)  
+- Vincular horários disponíveis  
+- Histórico de consultas realizadas  
+- (Pós MVP) Visualização semanal/mensal por médico  
+- (Pós MVP) Filtro por especialidade e médico  
+
+---
+
+### Lucas – Gestão de Pacientes e Prontuário Pessoal (Portal do Paciente)
+- Listar pacientes  
+- Cadastrar paciente  
+- Editar dados do paciente  
+- Histórico de atendimentos  
+- Anexos e documentos (RG, carteirinha etc.)  
+- Histórico de diagnósticos (Portal)  
+- Receitas médicas emitidas (PDF)  
+- Resultados de exames (upload pela clínica)
+
+---
+
+### Gui – Autenticação e Cadastro (Admin + Portal Paciente)
+- Tela de Login (Admin, Médico, Paciente)  
+- Cadastro de novo paciente (Portal)  
+- Recuperação de senha (Pós MVP)  
+- Cadastro de usuários do sistema (Administração)  
+- Permissões por perfil  
+
+---
+
+### Wilson – Consultas (Admin e Paciente)
+- Agendamento manual pela recepção  
+- Visualização por médico e por paciente  
+- Status: Confirmada / Realizada / Faltou / Cancelada  
+- Reagendamento  
+- Agendar nova consulta (Portal do Paciente)  
+- Cancelar / Reagendar (Portal)
+
+---
+
+### Edinilton – Painel Médico e Prontuários
+- Ver agenda do médico (dia/semana)  
+- Preencher prontuário  
+- Prescrever medicamentos  
+- Solicitar exames  
+- Ver histórico do paciente  
+- Visualizar prontuário por paciente (Admin)  
+- Inserir diagnóstico, receita, exames
+
+---
+
+### Matheus – Financeiro, Relatórios e Configurações Gerais
+- Faturamento por consulta ou convênio  
+- Tela de pagamento manual  
+- Filtros por período, médico ou paciente  
+- Exportar relatórios financeiros  
+- Relatórios:
+  - Consultas por período/médico  
+  - Atendimentos por convênio  
+  - Pacientes novos  
+  - Relatório financeiro (Pós MVP)  
+- Configurações gerais (logo, e-mail da clínica, horários padrão)
+
+
