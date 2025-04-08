@@ -122,7 +122,7 @@ Este sistema contempla três áreas principais:
 
 ---
 
-### 👨 Gui – Autenticação e Cadastro
+### 👨 Guilherme – Autenticação e Cadastro
 - 🔑 Tela de login  
 - 🆕 Cadastro de novo paciente  
 - 🔄 Recuperação de senha *(pós-MVP)*  
@@ -140,7 +140,7 @@ Este sistema contempla três áreas principais:
 
 ---
 
-### 👨 Edinilton – Painel Médico e Prontuários
+### 👨 Ednilton – Painel Médico e Prontuários
 - 📆 Ver agenda do médico  
 - 📝 Preencher prontuário  
 - 💊 Prescrever medicamentos  
