@@ -164,3 +164,119 @@ Este sistema contempla três áreas principais:
 - ⚙️ Configurações gerais do sistema
 
 ---
+
+# 📦 Estrutura de Banco de Dados – Sistema de Gestão para Clínica Médica
+
+## 🧑‍⚕️ TB_MEDICO
+| Campo         | Tipo         | Descrição                      |
+|---------------|--------------|--------------------------------|
+| ID_MEDICO     | INT (PK)     | Identificador do médico        |
+| NM_MEDICO     | VARCHAR(100) | Nome do médico                 |
+| NR_CRM        | VARCHAR(20)  | Número do CRM                  |
+| DS_ESPECIALIDADE | VARCHAR(100) | Especialidade médica       |
+| VL_EMAIL      | VARCHAR(100) | E-mail do médico (único)       |
+| VL_SENHA      | VARCHAR(255) | Senha do médico (criptografada)|
+| ST_ATIVO      | BOOLEAN      | Status de ativo/inativo        |
+
+---
+
+## 👤 TB_PACIENTE
+| Campo         | Tipo         | Descrição                      |
+|---------------|--------------|--------------------------------|
+| ID_PACIENTE   | INT (PK)     | Identificador do paciente      |
+| NM_PACIENTE   | VARCHAR(100) | Nome completo do paciente      |
+| DT_NASCIMENTO | DATE         | Data de nascimento             |
+| NR_CPF        | VARCHAR(14)  | CPF do paciente (único)        |
+| VL_EMAIL      | VARCHAR(100) | E-mail do paciente (único)     |
+| VL_SENHA      | VARCHAR(255) | Senha do paciente              |
+| NR_TELEFONE   | VARCHAR(20)  | Telefone de contato            |
+| DS_GENERO     | VARCHAR(20)  | Gênero                         |
+
+---
+
+## 📎 TB_PACIENTE_DOCUMENTO
+| Campo             | Tipo         | Descrição                    |
+|------------------|--------------|------------------------------|
+| ID_DOCUMENTO      | INT (PK)     | Identificador do documento   |
+| ID_PACIENTE       | INT (FK)     | Paciente relacionado         |
+| DS_TIPO_DOCUMENTO | VARCHAR(50)  | Tipo de documento (ex: RG)   |
+| VL_CAMINHO_ARQUIVO| TEXT         | Caminho do arquivo no servidor|
+
+---
+
+## ⏰ TB_HORARIO_MEDICO
+| Campo         | Tipo         | Descrição                      |
+|---------------|--------------|--------------------------------|
+| ID_HORARIO    | INT (PK)     | Identificador do horário       |
+| ID_MEDICO     | INT (FK)     | Médico relacionado             |
+| DS_DIA_SEMANA | VARCHAR(20)  | Dia da semana                  |
+| HR_INICIO     | TIME         | Hora de início                 |
+| HR_FIM        | TIME         | Hora de fim                    |
+
+---
+
+## 📋 TB_CONSULTA
+| Campo        | Tipo         | Descrição                      |
+|--------------|--------------|--------------------------------|
+| ID_CONSULTA  | INT (PK)     | Identificador da consulta      |
+| ID_PACIENTE  | INT (FK)     | Paciente da consulta           |
+| ID_MEDICO    | INT (FK)     | Médico responsável             |
+| DT_CONSULTA  | DATE         | Data da consulta               |
+| HR_CONSULTA  | TIME         | Hora da consulta               |
+| DS_STATUS    | VARCHAR(20)  | Status da consulta             |
+| VL_VALOR     | DECIMAL(10,2)| Valor da consulta              |
+
+---
+
+## 📂 TB_PRONTUARIO
+| Campo         | Tipo        | Descrição                      |
+|---------------|-------------|--------------------------------|
+| ID_PRONTUARIO | INT (PK)    | Identificador do prontuário    |
+| ID_CONSULTA   | INT (FK)    | Consulta relacionada           |
+| DS_DIAGNOSTICO| TEXT        | Diagnóstico do paciente        |
+| DS_RECEITA    | TEXT        | Receita médica emitida         |
+| DS_EXAMES     | TEXT        | Exames solicitados             |
+
+---
+
+## 💳 TB_PAGAMENTO
+| Campo         | Tipo         | Descrição                      |
+|---------------|--------------|--------------------------------|
+| ID_PAGAMENTO  | INT (PK)     | Identificador do pagamento     |
+| ID_CONSULTA   | INT (FK)     | Consulta relacionada           |
+| VL_PAGO       | DECIMAL(10,2)| Valor pago                     |
+| DT_PAGAMENTO  | DATE         | Data do pagamento              |
+| DS_FORMA_PAGAMENTO | VARCHAR(50) | Forma (boleto, pix, etc.) |
+
+---
+
+## 📊 TB_RELATORIO_LOG
+| Campo         | Tipo        | Descrição                      |
+|---------------|-------------|--------------------------------|
+| ID_RELATORIO  | INT (PK)    | Identificador do relatório     |
+| TP_RELATORIO  | VARCHAR(50) | Tipo do relatório              |
+| DT_GERACAO    | TIMESTAMP   | Data/hora de geração           |
+| DS_FILTRO     | TEXT        | Filtros aplicados              |
+
+---
+
+## 👥 TB_USUARIO_INTERNO
+| Campo        | Tipo         | Descrição                      |
+|--------------|--------------|--------------------------------|
+| ID_USUARIO   | INT (PK)     | Identificador do usuário       |
+| NM_USUARIO   | VARCHAR(100) | Nome do usuário interno        |
+| VL_EMAIL     | VARCHAR(100) | E-mail                         |
+| VL_SENHA     | VARCHAR(255) | Senha                          |
+| DS_PERFIL    | VARCHAR(50)  | Perfil (admin, recepção, TI)   |
+
+---
+
+## ⚙️ TB_CONFIGURACAO
+| Campo       | Tipo         | Descrição                      |
+|-------------|--------------|--------------------------------|
+| ID_CONFIG   | INT (PK)     | Identificador da configuração  |
+| DS_CHAVE    | VARCHAR(100) | Nome da chave de configuração  |
+| VL_VALOR    | TEXT         | Valor da configuração          |
+
+---
+
