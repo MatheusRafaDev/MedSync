@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import api from '../services/api';
+import { loginUsuario } from '../services/loginService';
 import '../styles/login.css';
-
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -10,19 +9,17 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErro('');
+    setErro(''); 
 
     try {
-      const response = await api.post('http://localhost:7070/api/usuarios', { email, senha });
-      
-      // Sucesso → guarda o usuário no localStorage
-      localStorage.setItem('usuario', JSON.stringify(response.data));
+      const usuario = await loginUsuario(email, senha); 
+
+      localStorage.setItem('usuario', JSON.stringify(usuario));
       alert('Login realizado com sucesso!');
-      
-      // Redireciona (exemplo)
+
       window.location.href = '/dashboard';
     } catch (err) {
-      setErro('Usuário ou senha inválidos');
+      setErro(err.message);  // Remova a letra 'e' aqui
     }
   };
 

@@ -3,8 +3,11 @@ package com.pi.medsync.controller;
 import com.pi.medsync.model.Paciente;
 import com.pi.medsync.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.pi.medsync.service.PacienteService;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,15 +20,12 @@ public class PacienteController {
     private PacienteRepository pacienteRepository;
 
     // Endpoint para criar um novo paciente
-    @PostMapping
-    public ResponseEntity<Paciente> createPaciente(@RequestBody Paciente paciente) {
-        try {
-            Paciente novoPaciente = pacienteRepository.save(paciente);
-            return ResponseEntity.ok(novoPaciente);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
-        }
+    @PostMapping("/api/pacientes")
+    public ResponseEntity<Paciente> criarPaciente(@RequestBody Paciente paciente) {
+        Paciente novoPaciente = PacienteService.salvarPaciente(paciente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoPaciente);
     }
+
 
     // Endpoint para listar todos os pacientes
     @GetMapping

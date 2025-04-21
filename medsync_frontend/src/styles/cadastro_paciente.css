@@ -61,6 +61,16 @@
     background-color: #1e5b96;
   }
   
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
   /* Estilo para mensagens de erro */
   .error {
     color: red;

@@ -10,7 +10,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pk_id")
-    private Long pkId;
+    private Long Id;
 
     @Column(name = "ds_nome", nullable = false)
     private String nome;
@@ -34,11 +34,11 @@ public class Usuario {
     private Paciente paciente;
 
     // Getters and Setters
-    public Long getPkId() {
-        return pkId;
+    public Long getId() {
+        return Id;
     }
-    public void setPkId(Long pkId) {
-        this.pkId = pkId;
+    public void setPkId(Long Id) {
+        this.Id = Id;
     }
     public String getNome() {
         return nome;
