@@ -116,20 +116,6 @@ Divisão de tarefas para a construção do MVP do Sistema de Gestão de Clínica
 
 ---
 
-## Observações Finais
-
-- Todos os participantes devem seguir a estrutura de UI/UX definida.
-- As telas devem ser responsivas e funcionais em dispositivos móveis e desktop.
-- O foco inicial deve ser garantir a funcionalidade básica de login, agendamento e prontuário para médicos e pacientes.
-
-
-
-
-
-
-
-
-
 ## Banco de Dados
 
 O banco de dados é composto pelas seguintes tabelas:
