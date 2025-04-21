@@ -111,26 +111,10 @@ Divisão de tarefas para a construção do MVP do Sistema de Gestão de Clínica
   - Tela de login para os três tipos de usuários (admin, médico, paciente).
 - **Login / Cadastro (Portal Paciente)**
   - Tela de login para pacientes e cadastro de novos pacientes.
-- **Cadastro de usuários internos (Admin)**
-  - Tela para criar e editar usuários administrativos.
 - **Configuração de permissões básicas (Admin)**
   - Implementação de configuração de permissões para administradores, médicos e pacientes.
 
 ---
-
-## Observações Finais
-
-- Todos os participantes devem seguir a estrutura de UI/UX definida.
-- As telas devem ser responsivas e funcionais em dispositivos móveis e desktop.
-- O foco inicial deve ser garantir a funcionalidade básica de login, agendamento e prontuário para médicos e pacientes.
-
-
-
-
-
-
-
-
 
 ## Banco de Dados
 
