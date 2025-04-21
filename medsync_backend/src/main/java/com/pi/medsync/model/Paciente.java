@@ -22,7 +22,7 @@ public class Paciente {
 
     @ManyToOne
     @JoinColumn(name = "fk_usuario", nullable = false)
-    private Usuario usuario;  // Alterado para armazenar o objeto Usuario
+    private Usuario usuario;
 
     // Getters e Setters
     public Long getId() {
