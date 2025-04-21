@@ -3,60 +3,52 @@ package com.pi.medsync.controller;
 import com.pi.medsync.model.Usuario;
 import com.pi.medsync.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
+@CrossOrigin(origins = "*") // libera o acesso para o frontend
 public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // 🔍 Listar todos os usuários
+    // Listar todos os usuários
     @GetMapping
-    public List<Usuario> listarUsuarios() {
+    public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }
 
-    // 🔍 Buscar por ID
+    // Buscar por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscarUsuario(@PathVariable Long id) {
-        Optional<Usuario> usuario = usuarioRepository.findById(id);
-        return usuario.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public Optional<Usuario> buscarPorId(@PathVariable Long id) {
+        return usuarioRepository.findById(id);
     }
 
-    // ➕ Criar novo usuário
+    // Criar novo usuário
     @PostMapping
-    public Usuario criarUsuario(@RequestBody Usuario usuario) {
+    public Usuario criar(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    // ✏️ Atualizar usuário
+    // Atualizar usuário existente
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario novoUsuario) {
-        return usuarioRepository.findById(id).map(usuario -> {
-            usuario.setNome(novoUsuario.getNome());
-            usuario.setEmail(novoUsuario.getEmail());
-            usuario.setSenha(novoUsuario.getSenha());
-            usuario.setTipo(novoUsuario.getTipo());
-            usuario.setAtivo(novoUsuario.isAtivo());
-            return ResponseEntity.ok(usuarioRepository.save(usuario));
-        }).orElseGet(() -> ResponseEntity.notFound().build());
+    public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+        usuario.setNome(usuarioAtualizado.getNome());
+        usuario.setEmail(usuarioAtualizado.getEmail());
+        usuario.setSenha(usuarioAtualizado.getSenha());
+        usuario.setTipo(usuarioAtualizado.getTipo());
+        usuario.setAtivo(usuarioAtualizado.isAtivo());
+        return usuarioRepository.save(usuario);
     }
 
-    // ❌ Deletar usuário
+    // Deletar usuário
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
-        if (usuarioRepository.existsById(id)) {
-            usuarioRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public void deletar(@PathVariable Long id) {
+        usuarioRepository.deleteById(id);
     }
 }
