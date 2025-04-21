@@ -188,7 +188,6 @@ CREATE TABLE tb_prontuario (
   dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_consulta) REFERENCES tb_consulta(pk_id)
 );
-´´´
 
 
 
