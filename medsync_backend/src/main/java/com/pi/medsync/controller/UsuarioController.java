@@ -2,7 +2,10 @@ package com.pi.medsync.controller;
 
 import com.pi.medsync.model.Usuario;
 import com.pi.medsync.repository.UsuarioRepository;
+import com.pi.medsync.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +18,8 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioService usuarioService;
 
     // Listar todos os usuários
     @GetMapping
@@ -30,8 +35,14 @@ public class UsuarioController {
 
     // Criar novo usuário
     @PostMapping
-    public Usuario criar(@RequestBody Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
+        // Você pode adicionar outras validações aqui, como verificar se o email já existe
+        if (usuarioService.buscarPorEmail(usuario.getEmail()) != null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // Email já cadastrado
+        }
+
+        Usuario usuarioCriado = usuarioService.criarUsuario(usuario);
+        return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
     }
 
     // Atualizar usuário existente
