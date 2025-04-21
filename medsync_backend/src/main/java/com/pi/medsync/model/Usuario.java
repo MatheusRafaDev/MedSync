@@ -25,7 +25,7 @@ public class Usuario {
     private String tipo;
 
     @Column(name = "tg_ativo")
-    private boolean ativo;
+    private boolean ativo = true;
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Medico medico;
