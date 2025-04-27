@@ -31,7 +31,7 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario usuario) {
-        String token = authService.autenticar(usuario.getEmail(), usuario.getSenha());
+        String token = String.valueOf(authService.autenticar(usuario.getEmail(), usuario.getSenha()));
 
         if (token != null) {
             return ResponseEntity.ok().body(token);

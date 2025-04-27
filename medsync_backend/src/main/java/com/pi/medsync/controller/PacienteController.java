@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pacientes")
+@CrossOrigin
 public class PacienteController {
 
     @Autowired
@@ -22,7 +23,6 @@ public class PacienteController {
 
     @PostMapping
     public ResponseEntity<Paciente> criarPaciente(@RequestBody PacienteDTO pacienteDTO) {
-        System.out.println("teste");
         Paciente pacienteCriado = pacienteService.criarPacienteComUsuario(pacienteDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(pacienteCriado);
     }

@@ -47,9 +47,15 @@ function Login() {
           {erro && <p>{erro}</p>}
           <button type="submit">Entrar</button>
         </form>
+
         <p className="forgot-password">
-          <a href="/recuperar-senha">Esqueci minha senha</a>
+          <a href="/recuperar-senha" className="btn-link">Esqueci minha senha</a>
         </p>
+        <a onClick={() => window.location.href = 'http://localhost:3000/cadastro_paciente'} className="btn-cadastro"> 
+          Cadastro de Paciente
+        </a>
+
+
       </div>
     </div>
   );

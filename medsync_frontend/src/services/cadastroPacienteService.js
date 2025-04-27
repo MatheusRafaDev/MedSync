@@ -1,19 +1,25 @@
-import axios from 'axios';
+import api from './api';
 
 export const cadastrarPaciente = async (nome, email, senha, nascimento, telefone, rg) => {
   try {
+
+    const formatarData = (data) => {
+      const [dia, mes, ano] = data.split('/');
+      return `${ano}-${mes}-${dia}`; // yyyy-MM-dd
+    };
+
     // Preparar os dados para o DTO
     const pacienteDTO = {
       usuarioNome: nome,
       usuarioEmail: email,
       usuarioSenha: senha,
-      nascimento: nascimento,
+      nascimento: formatarData(nascimento), // formata antes de enviar
       telefone: telefone,
       rg: rg,
     };
 
     // Enviar a requisição diretamente usando axios
-    const response = await axios.post('http://localhost:7070/api/pacientes', pacienteDTO, {
+    const response = await await api.post('/api/pacientes', pacienteDTO, {
       headers: {
         'Content-Type': 'application/json',
       }
