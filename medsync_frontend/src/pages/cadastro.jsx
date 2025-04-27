@@ -20,7 +20,7 @@ const CadastroPaciente = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:7070/api/usuarios', {
+      const response = await axios.post('http://localhost:7070/api/paciente', {
         nome,
         email,
         senha,

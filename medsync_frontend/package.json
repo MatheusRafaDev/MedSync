@@ -8,6 +8,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
+    "form-data": "^4.0.2",
     "my-react-app": "file:",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

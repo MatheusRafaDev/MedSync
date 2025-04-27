@@ -8,6 +8,9 @@ import com.pi.medsync.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Service
 public class PacienteService {
 
@@ -17,12 +20,34 @@ public class PacienteService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+
+    private String criptografarSenha(String senha) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = messageDigest.digest(senha.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString(); // Retorna a senha criptografada
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Erro ao criptografar a senha", e);
+        }
+    }
+
     public Paciente criarPacienteComUsuario(PacienteDTO pacienteDTO) {
         // Cria o novo usuário
         Usuario usuario = new Usuario();
         usuario.setNome(pacienteDTO.getUsuarioNome());
         usuario.setEmail(pacienteDTO.getUsuarioEmail());
-        usuario.setSenha(pacienteDTO.getUsuarioSenha());
+
+        // Criptografa a senha antes de salvar com SHA-256
+        String senhaCriptografada = criptografarSenha(pacienteDTO.getUsuarioSenha());
+
+        System.out.println(senhaCriptografada);
+
+        usuario.setSenha(senhaCriptografada);
+
         usuario.setTipo("Paciente");
         usuarioRepository.save(usuario);
 

@@ -11,7 +11,6 @@ const CadastroPaciente = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
-
   const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState('');
   const [rg, setRg] = useState('');
@@ -27,7 +26,8 @@ const CadastroPaciente = () => {
     }
 
     try {
-      const status = await cadastrarPaciente(nome, email, senha, nascimento);
+
+      const status = await cadastrarPaciente(nome, email, senha, nascimento, telefone, rg);
 
       if (status === 200) {
         navigate('/login');
@@ -65,25 +65,25 @@ const CadastroPaciente = () => {
         </div>
 
         <div className="form-group">
-        <label htmlFor="senha">Senha</label>
-        <input
+          <label htmlFor="senha">Senha</label>
+          <input
             type="password"
             id="senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             required
-        />
+          />
         </div>
 
         <div className="form-group">
-        <label htmlFor="confirmarSenha">Confirmar Senha</label>
-        <input
+          <label htmlFor="confirmarSenha">Confirmar Senha</label>
+          <input
             type="password"
             id="confirmarSenha"
             value={confirmarSenha}
             onChange={(e) => setConfirmarSenha(e.target.value)}
             required
-        />
+          />
         </div>
 
 

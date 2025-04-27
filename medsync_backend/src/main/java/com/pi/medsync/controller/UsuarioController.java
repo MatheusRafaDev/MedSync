@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.pi.medsync.service.AuthService;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,11 +20,24 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private AuthService authService;
 
 
     @GetMapping
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+        String token = authService.autenticar(usuario.getEmail(), usuario.getSenha());
+
+        if (token != null) {
+            return ResponseEntity.ok().body(token);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
     }
 
     @GetMapping("/{id}")

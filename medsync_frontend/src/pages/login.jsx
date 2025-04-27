@@ -12,14 +12,14 @@ function Login() {
     setErro(''); 
 
     try {
-      const usuario = await loginUsuario(email, senha); 
+      const token = await loginUsuario(email, senha); 
 
-      localStorage.setItem('usuario', JSON.stringify(usuario));
+      localStorage.setItem('token', token);  // Armazena o token JWT
       alert('Login realizado com sucesso!');
 
       window.location.href = '/dashboard';
     } catch (err) {
-      setErro(err.message);  // Remova a letra 'e' aqui
+      setErro(err.message);  
     }
   };
 
