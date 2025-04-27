@@ -9,52 +9,56 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErro(''); 
+    setErro('');
 
     try {
-      const token = await loginUsuario(email, senha); 
-
-      localStorage.setItem('token', token);  // Armazena o token JWT
+      const token = await loginUsuario(email, senha);
+      localStorage.setItem('token', token);
       alert('Login realizado com sucesso!');
-
       window.location.href = '/dashboard';
     } catch (err) {
-      setErro(err.message);  
+      setErro('Email ou senha inválidos.');
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2 className="login-title">Login</h2>
         <form onSubmit={handleLogin}>
-          <div>
-            <label>Email:</label>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
             <input 
-              type="email" 
+              id="email"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required />
+              required
+            />
           </div>
-          <div>
-            <label>Senha:</label>
+          
+          <div className="form-group">
+            <label htmlFor="senha">Senha:</label>
             <input 
-              type="password" 
+              id="senha"
+              type="password"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
-              required />
+              required
+            />
           </div>
-          {erro && <p>{erro}</p>}
-          <button type="submit">Entrar</button>
+
+          {erro && <div className="erro">{erro}</div>}
+
+          <button type="submit" className="btn-login">Entrar</button>
         </form>
 
-        <p className="forgot-password">
-          <a href="/recuperar-senha" className="btn-link">Esqueci minha senha</a>
-        </p>
-        <a onClick={() => window.location.href = 'http://localhost:3000/cadastro_paciente'} className="btn-cadastro"> 
-          Cadastro de Paciente
-        </a>
-
+        <div className="action-links">
+          <a href="/recuperar-senha">Esqueci minha senha</a>
+          <a onClick={() => window.location.href = 'http://localhost:3000/cadastro_paciente'}>
+            Cadastro de Paciente
+          </a>
+        </div>
 
       </div>
     </div>
