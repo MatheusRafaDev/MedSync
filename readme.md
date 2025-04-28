@@ -81,50 +81,28 @@ Armazena as receitas médicas.
 
 
 
-# Tarefas de Desenvolvimento - Sistema de Consultas Médicas
+### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
 
-## **Matheus**
-### **Cadastro de Pacientes (CRUD):**
-- Formulário e validação de CPF.
-- Listagem, edição e exclusão de pacientes.
+##### **Matheus**
+- **Cadastro de Pacientes (CRUD):** Formulário e validação de CPF. Listagem, edição e exclusão de pacientes.
+- **Login e Autenticação:** Implementação de login (E-mail e Senha). Redirecionamento após login.
+- **Consultas Realizadas:** Exibição e edição de consultas realizadas.
 
-### **Login e Autenticação:**
-- Implementação de login (E-mail e Senha).
-- Redirecionamento após login.
+##### **Murilo**
+- **Cadastro de Médicos (CRUD):** Formulário e listagem de médicos.
+- **Agendamento de Consultas:** Agendamento, confirmação e cancelamento de consultas.
 
-### **Consultas Realizadas:**
-- Exibição e edição de consultas realizadas.
+##### **Guilherme**
+- **Consulta e Prontuário:** Visualização do histórico médico e registro de atendimentos.
+- **Dashboard:** Exibição das principais informações no dashboard.
 
-## **Murilo**
-### **Cadastro de Médicos (CRUD):**
-- Formulário e listagem de médicos.
+##### **Ednilton**
+- **Emissão de Receitas:** Emissão e impressão de receitas médicas.
+- **Gerenciamento de Usuários:** Administração de usuários e permissões de acesso.
 
-### **Agendamento de Consultas:**
-- Agendamento, confirmação e cancelamento de consultas.
+##### **Wilson**
+- **Consultas (CRUD):** CRUD de consultas (agendamento, visualização, edição e cancelamento).
+- **Gerenciamento de Consultas Realizadas:** Exibição e edição de consultas realizadas.
 
-## **Guilherme**
-### **Consulta e Prontuário:**
-- Visualização do histórico médico e registro de atendimentos.
-
-### **Dashboard:**
-- Exibição das principais informações no dashboard.
-
-## **Ednilton**
-### **Emissão de Receitas:**
-- Emissão e impressão de receitas médicas.
-
-### **Gerenciamento de Usuários:**
-- Administração de usuários e permissões de acesso.
-
-## **Wilson**
-### **Consultas (CRUD):**
-- CRUD de consultas (agendamento, visualização, edição e cancelamento).
-
-### **Gerenciamento de Consultas Realizadas:**
-- Exibição e edição de consultas realizadas.
-
-## **Lucas**
-### **Prontuário Médico (CRUD):**
-- CRUD de prontuários médicos e vinculação com pacientes e médicos.
-
-
+##### **Lucas**
+- **Prontuário Médico (CRUD):** CRUD de prontuários médicos e vinculação com pacientes e médicos.
