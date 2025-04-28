@@ -79,11 +79,61 @@ Armazena as receitas médicas.
 - Listagem de usuários cadastrados.
 - Botões para adicionar, editar e excluir usuários.
 
-## Tarefas de Desenvolvimento:
-- **Matheus**: Implementação da tela de login e cadastro de paciente.
-- **Murilo**: Implementação da tela de gerenciamento de usuários.
-- **Guilherme**: Conclusão da página inicial (Dashboard).
-- **Ednilton**: Implementação da tela de consulta/prontuário.
-- **Wilsonm**: Implementação da tela de agendamento de consulta.
-- **Lucas**: Implementação da tela de emissão de receita.
+# Tarefas de Desenvolvimento - Sistema de Consultas Médicas
+
+## **Matheus**
+### **Cadastro de Pacientes (CRUD):**
+- Desenvolvimento do formulário de cadastro de paciente (Nome, CPF, Data de Nascimento, Telefone, Endereço, Plano de Saúde).
+- Validação de CPF duplicado.
+- Criação da funcionalidade de listagem, edição e exclusão de pacientes.
+
+### **Login e Autenticação:**
+- Implementação do sistema de login (autenticação via E-mail e Senha).
+- Lógica de redirecionamento após login.
+
+### **Consultas Realizadas:**
+- Exibição e organização de consultas realizadas, com a possibilidade de visualização e edição de observações.
+
+
+## **Murilo**
+### **Cadastro de Médicos (CRUD):**
+- Desenvolvimento do formulário de cadastro de médico (Nome, Especialidade, CRM).
+- Criação da funcionalidade de listagem, edição e exclusão de médicos.
+
+### **Agendamento de Consultas:**
+- Criação do formulário para agendamento de consultas (Escolha de Paciente, Médico, Data e Hora).
+- Implementação da confirmação e cancelamento de agendamentos.
+
+## **Guilherme**
+### **Consulta e Prontuário:**
+- Criação de tela para visualização do histórico médico de pacientes.
+- Implementação da funcionalidade para registro de novos atendimentos e descrição no prontuário.
+- Vinculação de consultas e prontuários.
+  
+### **Dashboard:**
+- Implementação do dashboard principal com as principais informações do sistema, como consultas agendadas, prontuários e usuários.
+
+## **Ednilton**
+### **Emissão de Receitas:**
+- Criação do formulário para emissão de receitas médicas (Medicamentos, Orientações).
+- Lógica de salvar e imprimir a receita.
+
+### **Gerenciamento de Usuários (Administração):**
+- Desenvolvimento das funcionalidades para a administração de usuários: adicionar, editar, listar e excluir.
+- Definição de permissões de acesso de acordo com o perfil (Recepcionista, Médico, Administrador).
+
+## **Wilson**
+### **Consultas (CRUD):**
+- Implementação de CRUD completo para consultas médicas: Agendamento, Visualização, Edição e Cancelamento.
+- Lógica de alteração de status da consulta (Agendada → Realizada ou Cancelada).
+
+### **Gerenciamento de Consultas Realizadas:**
+- Exibição e organização de consultas realizadas, com a possibilidade de visualização e edição de observações.
+
+## **Lucas**
+### **Prontuário Médico (CRUD):**
+- Desenvolvimento do CRUD para prontuários médicos: Registro, Visualização, Edição e Exclusão.
+- Vinculação entre prontuários, pacientes e médicos.
+
+
 
