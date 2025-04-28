@@ -86,7 +86,7 @@ Armazena as receitas médicas.
 ##### **Matheus**
 - **Cadastro de Pacientes (CRUD):** Formulário e validação de CPF. Listagem, edição e exclusão de pacientes.
 - **Login e Autenticação:** Implementação de login (E-mail e Senha). Redirecionamento após login.
-- **Consultas Realizadas:** Exibição e edição de consultas realizadas.
+- **Gerenciamento de Usuários:** Administração de usuários e permissões de acesso.
 
 ##### **Murilo**
 - **Cadastro de Médicos (CRUD):** Formulário e listagem de médicos.
@@ -98,8 +98,8 @@ Armazena as receitas médicas.
 
 ##### **Ednilton**
 - **Emissão de Receitas:** Emissão e impressão de receitas médicas.
-- **Gerenciamento de Usuários:** Administração de usuários e permissões de acesso.
 
+- **Consultas Realizadas:** Exibição e edição de consultas realizadas.
 ##### **Wilson**
 - **Consultas (CRUD):** CRUD de consultas (agendamento, visualização, edição e cancelamento).
 - **Gerenciamento de Consultas Realizadas:** Exibição e edição de consultas realizadas.
