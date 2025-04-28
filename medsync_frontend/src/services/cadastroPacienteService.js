@@ -1,6 +1,6 @@
 import api from './api';
 
-export const cadastrarPaciente = async (nome, email, senha, nascimento, telefone, rg) => {
+export const cadastrarPaciente = async (nome, nascimento, telefone, cpf, endereco, planoSaude) => {
   try {
 
     const formatarData = (data) => {
@@ -8,18 +8,17 @@ export const cadastrarPaciente = async (nome, email, senha, nascimento, telefone
       return `${ano}-${mes}-${dia}`; // yyyy-MM-dd
     };
 
-    // Preparar os dados para o DTO
-    const pacienteDTO = {
-      usuarioNome: nome,
-      usuarioEmail: email,
-      usuarioSenha: senha,
-      nascimento: formatarData(nascimento), // formata antes de enviar
+    const paciente = {
+      nome: nome,
+      cpf: cpf,
+      nascimento: formatarData(nascimento), 
       telefone: telefone,
-      rg: rg,
+      endereco: endereco,
+      planoSaude: planoSaude, 
     };
 
     // Enviar a requisição diretamente usando axios
-    const response = await await api.post('/api/pacientes', pacienteDTO, {
+    const response = await api.post('/api/pacientes', paciente, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -27,12 +26,11 @@ export const cadastrarPaciente = async (nome, email, senha, nascimento, telefone
 
     // Verifica se a requisição foi bem-sucedida
     if (response.status === 201) {
-      window.location.href = '/login'; // Redireciona para o login
+      return response.status; // Retorna o status da resposta
     } else {
       throw new Error('Erro inesperado ao criar a conta');
     }
 
-    return response.status; // Retorna o status da resposta
   } catch (error) {
     console.error(error);
     throw new Error('Erro ao criar a conta. Tente novamente.');

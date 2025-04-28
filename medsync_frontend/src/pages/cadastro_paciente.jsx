@@ -8,32 +8,25 @@ const CadastroPaciente = () => {
   const navigate = useNavigate();
 
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
   const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [rg, setRg] = useState('');
 
+  const [cpf, setCpf] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [planoSaude, setPlanoSaude] = useState('');
   const [erro, setErro] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (senha !== confirmarSenha) {
-      setErro('As senhas não coincidem.');
-      return;
-    }
-
     try {
-
-      const status = await cadastrarPaciente(nome, email, senha, nascimento, telefone, rg);
+      const status = await cadastrarPaciente(nome, nascimento, telefone, cpf, endereco, planoSaude);
 
       if (status === 200) {
         navigate('/login');
       }
     } catch (error) {
-      setErro(error.message); 
+      setErro(error.message);
     }
   };
 
@@ -54,38 +47,16 @@ const CadastroPaciente = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+          <label htmlFor="cpf">CPF</label>
+          <IMaskInput
+            mask="000.000.000-00"
+            value={cpf}
+            onAccept={(value) => setCpf(value)}
+            placeholder="000.000.000-00"
+            id="cpf"
             required
           />
         </div>
-
-        <div className="form-group">
-          <label htmlFor="senha">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="confirmarSenha">Confirmar Senha</label>
-          <input
-            type="password"
-            id="confirmarSenha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
-            required
-          />
-        </div>
-
 
         <div className="form-group">
           <label htmlFor="nascimento">Data de Nascimento</label>
@@ -111,14 +82,25 @@ const CadastroPaciente = () => {
           />
         </div>
 
+
         <div className="form-group">
-          <label htmlFor="rg">RG</label>
-          <IMaskInput
-            mask="00.000.000-0"
-            value={rg}
-            onAccept={(value) => setRg(value)}
-            placeholder="00.000.000-0"
-            id="rg"
+          <label htmlFor="endereco">Endereço</label>
+          <input
+            type="text"
+            id="endereco"
+            value={endereco}
+            onChange={(e) => setEndereco(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="planoSaude">Plano de Saúde</label>
+          <input
+            type="text"
+            id="planoSaude"
+            value={planoSaude}
+            onChange={(e) => setPlanoSaude(e.target.value)}
             required
           />
         </div>

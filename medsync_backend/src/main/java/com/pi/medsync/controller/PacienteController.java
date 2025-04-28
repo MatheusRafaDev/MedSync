@@ -1,14 +1,11 @@
 package com.pi.medsync.controller;
 
 import com.pi.medsync.model.Paciente;
-import com.pi.medsync.model.PacienteDTO;
-import com.pi.medsync.repository.PacienteRepository;
+import com.pi.medsync.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.pi.medsync.service.PacienteService;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +18,12 @@ public class PacienteController {
     @Autowired
     private PacienteService pacienteService;
 
+    // Criar novo paciente
     @PostMapping
-    public ResponseEntity<Paciente> criarPaciente(@RequestBody PacienteDTO pacienteDTO) {
-        Paciente pacienteCriado = pacienteService.criarPacienteComUsuario(pacienteDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pacienteCriado);
+    public ResponseEntity<Paciente> criarPaciente(@RequestBody Paciente paciente) {
+        Paciente criado = pacienteService.criarPaciente(paciente);
+        return new ResponseEntity<>(criado, HttpStatus.CREATED);
     }
+
+
 }

@@ -62,8 +62,6 @@ public class UsuarioController {
         usuario.setNome(usuarioAtualizado.getNome());
         usuario.setEmail(usuarioAtualizado.getEmail());
         usuario.setSenha(usuarioAtualizado.getSenha());
-        usuario.setTipo(usuarioAtualizado.getTipo());
-        usuario.setAtivo(usuarioAtualizado.isAtivo());
         return usuarioRepository.save(usuario);
     }
 

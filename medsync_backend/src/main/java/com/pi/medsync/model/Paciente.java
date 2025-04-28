@@ -4,33 +4,68 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tb_pacientes")
+@Table(name = "TB_PACIENTES")
 public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPaciente;
 
-    @Column(name = "dt_nascimento", nullable = false)
+    @Column(name = "NOME", nullable = false, length = 100)
+    private String nome;
+
+    @Column(name = "CPF", nullable = false, unique = true, length = 14)
+    private String cpf;
+
+    @Column(name = "DT_NASCIMENTO", nullable = false)
     private LocalDate nascimento;
 
-    @Column(name = "ds_telefone", nullable = false)
+    @Column(name = "TELEFONE", length = 20)
     private String telefone;
 
-    @Column(name = "ds_rg", nullable = false)
-    private String rg;
+    @Column(name = "ENDERECO", columnDefinition = "TEXT")
+    private String endereco;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_usuario", nullable = false)
-    private Usuario usuario;
+    @Column(name = "PLANO_SAUDE", length = 50)
+    private String planoSaude;
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
+    // Construtor padrão
+    public Paciente() {}
+
+    // Construtor com campos
+    public Paciente(Long idPaciente, String nome, String cpf, LocalDate nascimento, String telefone, String endereco, String planoSaude) {
+        this.idPaciente = idPaciente;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.planoSaude = planoSaude;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // Getters e Setters
+    public Long getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(Long idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public LocalDate getNascimento() {
@@ -49,19 +84,19 @@ public class Paciente {
         this.telefone = telefone;
     }
 
-    public String getRg() {
-        return rg;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getPlanoSaude() {
+        return planoSaude;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setPlanoSaude(String planoSaude) {
+        this.planoSaude = planoSaude;
     }
 }

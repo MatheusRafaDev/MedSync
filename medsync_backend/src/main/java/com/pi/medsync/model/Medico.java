@@ -3,47 +3,30 @@ package com.pi.medsync.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_medico")
+@Table(name = "TB_MEDICOS")
 public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
-    private Long pkId;
+    private Long idMedico;
 
-    @OneToOne
-    @JoinColumn(name = "fk_usuario")
-    private Usuario usuario;
+    @Column(name = "DS_NOME", nullable = false, length = 100)
+    private String dsNome;
 
-    @Column(name = "ds_crm", nullable = false)
-    private String crm;
+    @Column(name = "DS_ESPECIALIDADE", nullable = false, length = 100)
+    private String dsEspecialidade;
 
-    @Column(name = "ds_especialidade", nullable = false)
-    private String especialidade;
+    @Column(name = "DS_CRM", nullable = false, unique = true, length = 20)
+    private String dsCrm;
 
-    // Getters and Setters
-    public Long getPkId() {
-        return pkId;
+    public Medico() {}
+
+    public Medico(Long idMedico, String dsNome, String dsEspecialidade, String dsCrm) {
+        this.idMedico = idMedico;
+        this.dsNome = dsNome;
+        this.dsEspecialidade = dsEspecialidade;
+        this.dsCrm = dsCrm;
     }
-    public void setPkId(Long pkId) {
-        this.pkId = pkId;
-    }
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    public String getCrm() {
-        return crm;
-    }
-    public void setCrm(String crm) {
-        this.crm = crm;
-    }
-    public String getEspecialidade() {
-        return especialidade;
-    }
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
+
+
 }

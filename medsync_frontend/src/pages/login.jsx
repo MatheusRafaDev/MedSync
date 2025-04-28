@@ -55,9 +55,7 @@ function Login() {
 
         <div className="action-links">
           <a href="/recuperar-senha">Esqueci minha senha</a>
-          <a onClick={() => window.location.href = 'http://localhost:3000/cadastro_paciente'}>
-            Cadastro de Paciente
-          </a>
+          
         </div>
 
       </div>

@@ -14,7 +14,7 @@ public class AuthService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Método para criptografar a senha usando SHA-256
+
     private String criptografarSenha(String senha) {
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -29,17 +29,12 @@ public class AuthService {
         }
     }
 
-    // Método de autenticação
     public String autenticar(String email, String senha) {
         Usuario usuario = usuarioRepository.findByEmail(email);
 
-        if (usuario != null && compararSenha(senha, usuario.getSenha())) {
-            return usuario.getTipo(); // Retorna o tipo de usuário (ADMIN, MEDICO, PACIENTE)
-        }
-        return "Login inválido"; // Retorno para login inválido
+        return "Login inválido";
     }
 
-    // Método para comparar a senha informada com a criptografada
     private boolean compararSenha(String senhaInformada, String senhaCriptografada) {
         String senhaCriptografadaInformada = criptografarSenha(senhaInformada);
         return senhaCriptografada.equals(senhaCriptografadaInformada);
