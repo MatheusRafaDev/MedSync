@@ -23,7 +23,7 @@ Armazena as informações dos pacientes.
 ### 3. **TB_MEDICOS**
 Armazena as informações dos médicos.
 - **ID_MEDICO** (INT): Identificador único do médico.
-- **DS_NOME** (VARCHAR(100)): Nome completo do médico.
+- **DS_NOME** (VARCHAR(100)): Nome completo do médico.w
 - **DS_ESPECIALIDADE** (VARCHAR(100)): Especialidade do médico.
 - **DS_CRM** (VARCHAR(20)): Número do CRM do médico (único).
 
@@ -79,61 +79,52 @@ Armazena as receitas médicas.
 - Listagem de usuários cadastrados.
 - Botões para adicionar, editar e excluir usuários.
 
+
+
 # Tarefas de Desenvolvimento - Sistema de Consultas Médicas
 
 ## **Matheus**
 ### **Cadastro de Pacientes (CRUD):**
-- Desenvolvimento do formulário de cadastro de paciente (Nome, CPF, Data de Nascimento, Telefone, Endereço, Plano de Saúde).
-- Validação de CPF duplicado.
-- Criação da funcionalidade de listagem, edição e exclusão de pacientes.
+- Formulário e validação de CPF.
+- Listagem, edição e exclusão de pacientes.
 
 ### **Login e Autenticação:**
-- Implementação do sistema de login (autenticação via E-mail e Senha).
-- Lógica de redirecionamento após login.
+- Implementação de login (E-mail e Senha).
+- Redirecionamento após login.
 
 ### **Consultas Realizadas:**
-- Exibição e organização de consultas realizadas, com a possibilidade de visualização e edição de observações.
-
+- Exibição e edição de consultas realizadas.
 
 ## **Murilo**
 ### **Cadastro de Médicos (CRUD):**
-- Desenvolvimento do formulário de cadastro de médico (Nome, Especialidade, CRM).
-- Criação da funcionalidade de listagem, edição e exclusão de médicos.
+- Formulário e listagem de médicos.
 
 ### **Agendamento de Consultas:**
-- Criação do formulário para agendamento de consultas (Escolha de Paciente, Médico, Data e Hora).
-- Implementação da confirmação e cancelamento de agendamentos.
+- Agendamento, confirmação e cancelamento de consultas.
 
 ## **Guilherme**
 ### **Consulta e Prontuário:**
-- Criação de tela para visualização do histórico médico de pacientes.
-- Implementação da funcionalidade para registro de novos atendimentos e descrição no prontuário.
-- Vinculação de consultas e prontuários.
-  
+- Visualização do histórico médico e registro de atendimentos.
+
 ### **Dashboard:**
-- Implementação do dashboard principal com as principais informações do sistema, como consultas agendadas, prontuários e usuários.
+- Exibição das principais informações no dashboard.
 
 ## **Ednilton**
 ### **Emissão de Receitas:**
-- Criação do formulário para emissão de receitas médicas (Medicamentos, Orientações).
-- Lógica de salvar e imprimir a receita.
+- Emissão e impressão de receitas médicas.
 
-### **Gerenciamento de Usuários (Administração):**
-- Desenvolvimento das funcionalidades para a administração de usuários: adicionar, editar, listar e excluir.
-- Definição de permissões de acesso de acordo com o perfil (Recepcionista, Médico, Administrador).
+### **Gerenciamento de Usuários:**
+- Administração de usuários e permissões de acesso.
 
 ## **Wilson**
 ### **Consultas (CRUD):**
-- Implementação de CRUD completo para consultas médicas: Agendamento, Visualização, Edição e Cancelamento.
-- Lógica de alteração de status da consulta (Agendada → Realizada ou Cancelada).
+- CRUD de consultas (agendamento, visualização, edição e cancelamento).
 
 ### **Gerenciamento de Consultas Realizadas:**
-- Exibição e organização de consultas realizadas, com a possibilidade de visualização e edição de observações.
+- Exibição e edição de consultas realizadas.
 
 ## **Lucas**
 ### **Prontuário Médico (CRUD):**
-- Desenvolvimento do CRUD para prontuários médicos: Registro, Visualização, Edição e Exclusão.
-- Vinculação entre prontuários, pacientes e médicos.
-
+- CRUD de prontuários médicos e vinculação com pacientes e médicos.
 
 
