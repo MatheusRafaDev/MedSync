@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import InputMask from 'react-input-mask';
+import '../styles/cadastro_paciente.css';
 
 const CadastroPaciente = () => {
   const navigate = useNavigate();
@@ -9,6 +11,9 @@ const CadastroPaciente = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [nascimento, setNascimento] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [rg, setRg] = useState('');
   const [erro, setErro] = useState('');
 
   const handleSubmit = async (e) => {
@@ -24,11 +29,22 @@ const CadastroPaciente = () => {
         nome,
         email,
         senha,
-        tipo: 'PACIENTE',  // Definindo o tipo como "PACIENTE"
+        tipo: 'PACIENTE',
       });
 
+      const usuarioId = response.data.pkId;
+
+      const pacienteData = {
+        fk_usuario: usuarioId,
+        dt_nascimento: nascimento,
+        ds_telefone: telefone,
+        ds_rg: rg,
+      };
+
+      await axios.post('http://localhost:7070/api/pacientes', pacienteData);
+
       if (response.status === 200) {
-        navigate('/login');  // Redireciona para a tela de login
+        navigate('/login');
       }
     } catch (error) {
       setErro('Erro ao criar a conta. Tente novamente.');
@@ -50,6 +66,7 @@ const CadastroPaciente = () => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -60,6 +77,7 @@ const CadastroPaciente = () => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="senha">Senha</label>
           <input
@@ -70,6 +88,7 @@ const CadastroPaciente = () => {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="confirmarSenha">Confirmar Senha</label>
           <input
@@ -80,10 +99,66 @@ const CadastroPaciente = () => {
             required
           />
         </div>
+
+        <div className="form-group">
+          <label htmlFor="nascimento">Data de Nascimento</label>
+          <InputMask
+            mask="99/99/9999"
+            value={nascimento}
+            onChange={(e) => setNascimento(e.target.value)}
+          >
+            {(inputProps) => (
+              <input
+                {...inputProps}
+                type="text"
+                id="nascimento"
+                required
+              />
+            )}
+          </InputMask>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="telefone">Telefone</label>
+          <InputMask
+            mask="(99) 99999-9999"
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
+          >
+            {(inputProps) => (
+              <input
+                {...inputProps}
+                type="text"
+                id="telefone"
+                required
+              />
+            )}
+          </InputMask>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="rg">RG</label>
+          <InputMask
+            mask="99.999.999-9"
+            value={rg}
+            onChange={(e) => setRg(e.target.value)}
+          >
+            {(inputProps) => (
+              <input
+                {...inputProps}
+                type="text"
+                id="rg"
+                required
+              />
+            )}
+          </InputMask>
+        </div>
+
         <button type="submit" className="submit-button">
           Criar Conta
         </button>
       </form>
+
       <p>
         Já tem uma conta? <a href="/login">Faça login</a>
       </p>

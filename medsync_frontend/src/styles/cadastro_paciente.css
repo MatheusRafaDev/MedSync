@@ -1,0 +1,85 @@
+/* Estilo para o container do formulário */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilo para o título */
+  h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para os campos de entrada do formulário */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #2671BB;
+    outline: none;
+  }
+  
+  /* Estilo para o botão de envio */
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2671BB;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #1e5b96;
+  }
+  
+  /* Estilo para mensagens de erro */
+  .error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para o link de login */
+  p {
+    text-align: center;
+  }
+  
+  p a {
+    color: #2671BB;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
