@@ -80,6 +80,59 @@ Armazena as receitas médicas.
 - Botões para adicionar, editar e excluir usuários.
 
 
+# 📋 Status dos Controllers
+
+## ✅ UsuarioController – *Matheus*
+- [x] Login  
+- [x] Criar  
+- [x] Atualizar  
+- [x] Listar Todos  
+- [x] Deletar  
+- [ ] Listar por ID  
+
+---
+
+## ✅ PacienteController – *Guilherme*
+- [x] Criar  
+- [ ] Atualizar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
+
+---
+
+## ✅ ProntuarioController – *Lucas*
+- [x] Listar por Paciente  
+- [x] Criar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
+
+---
+
+## ✅ MedicoController – *Murilo*
+- [ ] Criar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
+
+---
+
+## ✅ ConsultasController – *Wilson*
+- [ ] Criar  
+- [ ] Cancelar  
+- [ ] Confirmar  
+- [ ] Listar por Paciente  
+- [ ] Listar por Médico  
+- [ ] Listar por Data  
+
+---
+
+## ✅ ReceitaController – *Ryan*
+- [ ] Criar  
+- [ ] Listar por Paciente  
+- [ ] Listar por Médico  
+
 
 ### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
 
