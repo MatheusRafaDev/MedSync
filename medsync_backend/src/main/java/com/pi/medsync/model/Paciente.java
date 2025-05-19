@@ -9,32 +9,33 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPaciente;
+    @Column(name = "id_paciente")
+    private Long id;
 
-    @Column(name = "NOME", nullable = false, length = 100)
+    @Column(name = "ds_nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "CPF", nullable = false, unique = true, length = 14)
+    @Column(name = "ds_cpf", nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(name = "DT_NASCIMENTO", nullable = false)
+    @Column(name = "dt_nascimento", nullable = false)
     private LocalDate nascimento;
 
-    @Column(name = "TELEFONE", length = 20)
+    @Column(name = "ds_telefone", length = 20)
     private String telefone;
 
-    @Column(name = "ENDERECO", columnDefinition = "TEXT")
+    @Column(name = "ds_endereco", columnDefinition = "TEXT")
     private String endereco;
 
-    @Column(name = "PLANO_SAUDE", length = 50)
+    @Column(name = "ds_plano_saude", length = 50)
     private String planoSaude;
 
     // Construtor padrão
     public Paciente() {}
 
     // Construtor com campos
-    public Paciente(Long idPaciente, String nome, String cpf, LocalDate nascimento, String telefone, String endereco, String planoSaude) {
-        this.idPaciente = idPaciente;
+    public Paciente(Long id, String nome, String cpf, LocalDate nascimento, String telefone, String endereco, String planoSaude) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
@@ -44,12 +45,12 @@ public class Paciente {
     }
 
     // Getters e Setters
-    public Long getIdPaciente() {
-        return idPaciente;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdPaciente(Long idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
