@@ -1,8 +1,9 @@
 package com.pi.medsync.controller;
 
 import com.pi.medsync.model.Paciente;
-import com.pi.medsync.repository.PacienteRepository;
+import com.pi.medsync.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,23 +12,18 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/pacientes")
+@CrossOrigin
 public class PacienteController {
 
     @Autowired
-    private PacienteRepository pacienteRepository;
+    private PacienteService pacienteService;
 
-    // Criar um novo paciente
     @PostMapping
-    public ResponseEntity<Paciente> createPaciente(@RequestBody Paciente paciente) {
-        try {
-            Paciente novoPaciente = pacienteRepository.save(paciente);
-            return ResponseEntity.ok(novoPaciente);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(null);
-        }
+    public ResponseEntity<Paciente> criarPaciente(@RequestBody Paciente paciente) {
+        Paciente criado = pacienteService.criarPaciente(paciente);
+        return new ResponseEntity<>(criado, HttpStatus.CREATED);
     }
 
-    // Listar todos os pacientes
     @GetMapping
     public List<Paciente> getAllPacientes() {
         return pacienteRepository.findAll();
@@ -73,4 +69,5 @@ public class PacienteController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

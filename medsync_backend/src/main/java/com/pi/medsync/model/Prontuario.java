@@ -1,70 +1,77 @@
 package com.pi.medsync.model;
 
 import jakarta.persistence.*;
-
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_prontuario")
+@Table(name = "TB_PRONTUARIOS")
 public class Prontuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
-    private Long pkId;
+    private Long idProntuario;
 
-    @OneToOne
-    @JoinColumn(name = "fk_consulta", nullable = false)
-    private Consulta consulta;
+    @ManyToOne
+    @JoinColumn(name = "ID_PACIENTE", nullable = false)
+    private Paciente paciente;
 
-    @Column(name = "ds_diagnostico")
-    private String diagnostico;
+    @ManyToOne
+    @JoinColumn(name = "ID_MEDICO", nullable = false)
+    private Medico medico;
 
-    @Column(name = "ds_receita")
-    private String receita;
+    @Column(name = "DT_REGISTRO", nullable = false)
+    private LocalDateTime dtRegistro;
 
-    @Column(name = "ds_exames")
-    private String exames;
+    @Column(name = "DS_DESCRICAO", columnDefinition = "TEXT")
+    private String dsDescricao;
 
-    @Column(name = "dt_criacao", nullable = false)
-    private LocalDateTime criacao;
+    public Prontuario() {}
 
-    // Getters and Setters
-    public Long getPkId() {
-        return pkId;
+    public Prontuario(Long idProntuario, Paciente paciente, Medico medico, LocalDateTime dtRegistro, String dsDescricao) {
+        this.idProntuario = idProntuario;
+        this.paciente = paciente;
+        this.medico = medico;
+        this.dtRegistro = dtRegistro;
+        this.dsDescricao = dsDescricao;
     }
-    public void setPkId(Long pkId) {
-        this.pkId = pkId;
+
+    public Long getIdProntuario() {
+        return idProntuario;
     }
-    public Consulta getConsulta() {
-        return consulta;
+
+    public void setIdProntuario(Long idProntuario) {
+        this.idProntuario = idProntuario;
     }
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+
+    public Paciente getPaciente() {
+        return paciente;
     }
-    public String getDiagnostico() {
-        return diagnostico;
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
-    public void setDiagnostico(String diagnostico) {
-        this.diagnostico = diagnostico;
+
+    public Medico getMedico() {
+        return medico;
     }
-    public String getReceita() {
-        return receita;
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
-    public void setReceita(String receita) {
-        this.receita = receita;
+
+    public LocalDateTime getDtRegistro() {
+        return dtRegistro;
     }
-    public String getExames() {
-        return exames;
+
+    public void setDtRegistro(LocalDateTime dtRegistro) {
+        this.dtRegistro = dtRegistro;
     }
-    public void setExames(String exames) {
-        this.exames = exames;
+
+    public String getDsDescricao() {
+        return dsDescricao;
     }
-    public LocalDateTime getCriacao() {
-        return criacao;
-    }
-    public void setCriacao(LocalDateTime criacao) {
-        this.criacao = criacao;
+
+    public void setDsDescricao(String dsDescricao) {
+        this.dsDescricao = dsDescricao;
     }
 }

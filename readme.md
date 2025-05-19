@@ -1,177 +1,161 @@
-# Sistema de Gestão de Clínica Médica
+# Modelo de Dados - Sistema de Consultas Médicas
 
-## Descrição
+## Tabelas
 
-O **Sistema de Gestão de Clínica Médica** é uma aplicação web para gerenciar clínicas médicas de forma eficiente. Ele permite a administração de usuários (administradores, médicos e pacientes), agendamento de consultas, visualização de prontuários e histórico de diagnósticos, entre outras funcionalidades.
+### 1. **TB_USUARIOS**
+Armazena os dados dos usuários do sistema (recepcionista, médico, administrador).
+- **ID_USUARIO** (INT): Identificador único do usuário.
+- **DS_NOME** (VARCHAR(100)): Nome completo do usuário.
+- **DS_EMAIL** (VARCHAR(100)): E-mail do usuário (único).
+- **DS_SENHA** (VARCHAR(255)): Senha criptografada do usuário.
+- **DS_PERFIL** (ENUM): Tipo de perfil do usuário (Recepcionista, Médico, Administrador).
 
-Este projeto está sendo desenvolvido com o objetivo de oferecer uma solução simples e eficaz para o gerenciamento de clínicas, facilitando o controle de consultas, prontuários médicos e usuários internos da clínica.
+### 2. **TB_PACIENTES**
+Armazena as informações dos pacientes.
+- **ID_PACIENTE** (INT): Identificador único do paciente.
+- **DS_NOME** (VARCHAR(100)): Nome completo do paciente.
+- **DS_CPF** (VARCHAR(14)): CPF do paciente (único).
+- **DT_NASCIMENTO** (DATE): Data de nascimento do paciente.
+- **DS_TELEFONE** (VARCHAR(20)): Telefone de contato do paciente.
+- **DS_ENDERECO** (TEXT): Endereço do paciente.
+- **DS_PLANO_SAUDE** (VARCHAR(50)): Plano de saúde do paciente.
 
-## Funcionalidades do MVP
+### 3. **TB_MEDICOS**
+Armazena as informações dos médicos.
+- **ID_MEDICO** (INT): Identificador único do médico.
+- **DS_NOME** (VARCHAR(100)): Nome completo do médico.w
+- **DS_ESPECIALIDADE** (VARCHAR(100)): Especialidade do médico.
+- **DS_CRM** (VARCHAR(20)): Número do CRM do médico (único).
 
-O MVP do sistema cobre as seguintes funcionalidades:
+### 4. **TB_CONSULTAS**
+Armazena as consultas agendadas ou realizadas.
+- **ID_CONSULTA** (INT): Identificador único da consulta.
+- **ID_PACIENTE** (INT): Referência ao paciente (FK).
+- **ID_MEDICO** (INT): Referência ao médico (FK).
+- **DT_CONSULTA** (DATETIME): Data e hora da consulta.
+- **DS_STATUS** (ENUM): Status da consulta (Agendada, Realizada, Cancelada).
+- **DS_OBSERVACOES** (TEXT): Observações sobre a consulta.
 
-### Área Administrativa (Admin)
-- **Login** para administradores, médicos e pacientes.
-- **Listar médicos**.
-- **Cadastrar/Editar médico** (nome, CRM, especialidade).
-- **Listar pacientes**.
-- **Cadastrar/Editar paciente** (dados básicos).
-- **Agendar consulta manualmente**.
-- **Visualizar consultas** (por médico/paciente).
-- **Visualizar prontuário**.
-- **Inserir diagnóstico, receita e exames**.
-- **Cadastro de usuários internos** (com permissão básica).
+### 5. **TB_PRONTUARIOS**
+Armazena os prontuários médicos de cada paciente.
+- **ID_PRONTUARIO** (INT): Identificador único do prontuário.
+- **ID_PACIENTE** (INT): Referência ao paciente (FK).
+- **ID_MEDICO** (INT): Referência ao médico que registrou o prontuário (FK).
+- **DT_REGISTRO** (DATETIME): Data e hora do registro.
+- **DS_DESCRICAO** (TEXT): Descrição do atendimento registrado.
 
-### Portal do Paciente
-- **Login / Cadastro**.
-- **Visualizar consultas** (próximas e passadas).
-- **Agendar nova consulta**.
-- **Cancelar consulta**.
-- **Ver histórico de diagnósticos e receitas**.
+### 6. **TB_RECEITAS**
+Armazena as receitas médicas.
+- **ID_RECEITA** (INT): Identificador único da receita.
+- **ID_CONSULTA** (INT): Referência à consulta associada à receita (FK).
+- **DS_MEDICAMENTOS** (TEXT): Lista de medicamentos prescritos.
+- **DS_ORIENTACOES** (TEXT): Orientações fornecidas ao paciente.
+- **DT_EMISSAO** (DATETIME): Data e hora de emissão da receita.
 
-### Painel do Médico
-- **Ver agenda do dia**.
-- **Preencher prontuário** (diagnóstico, receita, exame).
-- **Ver histórico do paciente**.
+## Fluxo das Funcionalidades
 
-### Total de Telas para o MVP: 18
+### 1. **Login**
+- Usuário se autentica utilizando e-mail e senha.
+- Redirecionamento para a página inicial (Dashboard) ou exibição de erro de login.
+
+### 2. **Cadastro de Paciente**
+- Campos: Nome, CPF, Data de Nascimento, Telefone, Endereço, Plano de Saúde.
+- Verifica a duplicidade de CPF antes de salvar no banco.
+
+### 3. **Agendamento de Consulta**
+- Escolha do paciente, médico, data e horário disponível.
+- Confirmação do agendamento ou cancelamento.
+
+### 4. **Consulta/Prontuário**
+- Histórico médico do paciente.
+- Registro de novo atendimento com descrição.
+- Prescrição de receita.
+
+### 5. **Emissão de Receita**
+- Campos para medicamentos prescritos e orientações ao paciente.
+- Opção de salvar e imprimir a receita.
+
+### 6. **Gerenciamento de Usuários**
+- Listagem de usuários cadastrados.
+- Botões para adicionar, editar e excluir usuários.
 
 
-# Divisão de Tarefas - Sistema de Gestão de Clínica Médica
+# 📋 Status dos Controllers
 
-## Objetivo
-Divisão de tarefas para a construção do MVP do Sistema de Gestão de Clínica Médica.
-
----
-
-## 🧑‍💼 **Murilo** - **Médicos e Consultas (Admin)**
-
-- **Listar médicos**
-  - Tela de listagem de médicos cadastrados na plataforma.
-- **Cadastrar/Editar médico**
-  - Tela de cadastro/edição de médicos com os campos: nome, CRM, especialidade.
-- **Agendar consulta manualmente**
-  - Tela de agendamento de consultas associando médico e paciente.
-- **Visualizar consultas**
-  - Tela para visualização das consultas realizadas por médico e paciente.
-
----
-
-## 👤 **Lucas** - **Pacientes e Prontuário**
-
-- **Listar pacientes**
-  - Tela de listagem de pacientes cadastrados na plataforma.
-- **Cadastrar/Editar paciente**
-  - Tela de cadastro/edição de paciente com os campos: nome, dados básicos, telefone, RG.
-- **Visualizar prontuário**
-  - Tela para visualizar o prontuário médico de um paciente, com diagnóstico, receitas e exames.
-
----
-
-## 👨‍💼 **Guilherme** - **Usuários e Configuração Admin**
-
-- **Cadastro de usuários internos**
-  - Tela de cadastro de usuários administrativos.
-- **Ajustes gerais e configurações do sistema**
-  - Configuração de permissões para cada tipo de usuário.
-- **Validação e filtros da visualização de consultas**
-  - Implementação de filtros para visualização de consultas (por médico/paciente).
-- **Configuração de permissões básicas**
-  - Definir as permissões de acesso de cada tipo de usuário no sistema.
-
----
-
-## 👥 **Wilson** - **Consultas e Portal Paciente**
-
-- **Visualizar consultas (próximas e passadas) no portal**
-  - Tela para o paciente visualizar suas consultas agendadas, passadas e futuras.
-- **Agendar nova consulta no portal**
-  - Tela onde o paciente pode agendar novas consultas com médicos disponíveis.
-- **Cancelar consulta no portal**
-  - Funcionalidade para que o paciente possa cancelar consultas agendadas.
-- **Ver histórico de diagnósticos e receitas**
-  - Tela para o paciente visualizar o histórico de diagnósticos, exames e receitas médicas.
+## ✅ UsuarioController – *Matheus*
+- [x] Login  
+- [x] Criar  
+- [x] Atualizar  
+- [x] Listar Todos  
+- [x] Deletar  
+- [ ] Listar por ID  
 
 ---
 
-## 🧑‍⚕️ **Ednilton** - **Painel do Médico e Prontuário**
-
-- **Ver agenda do dia**
-  - Tela onde o médico pode visualizar as consultas agendadas para o dia.
-- **Preencher prontuário**
-  - Funcionalidade para o médico preencher o prontuário do paciente, com diagnóstico, receita e exames.
-- **Ver histórico do paciente**
-  - Tela onde o médico pode visualizar o histórico de consultas, diagnósticos e exames do paciente.
+## ✅ PacienteController – *Guilherme*
+- [x] Criar  
+- [ ] Atualizar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
 
 ---
 
-## 🔐 **Matheus** - **Login e Administração**
-
-- **Login (Admin, Médico, Paciente)**
-  - Tela de login para os três tipos de usuários (admin, médico, paciente).
-- **Login / Cadastro (Portal Paciente)**
-  - Tela de login para pacientes e cadastro de novos pacientes.
-- **Configuração de permissões básicas (Admin)**
-  - Implementação de configuração de permissões para administradores, médicos e pacientes.
+## ✅ ProntuarioController – *Lucas*
+- [x] Listar por Paciente  
+- [x] Criar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
 
 ---
 
-## Banco de Dados
+## ✅ MedicoController – *Murilo*
+- [ ] Criar  
+- [ ] Deletar  
+- [ ] Listar Todos  
+- [ ] Listar por ID  
 
-O banco de dados é composto pelas seguintes tabelas:
+---
 
-### 🧑‍💼 Usuários (Admin, Médico, Paciente)
-```sql
--- 🧑‍💼 Usuários (admin, médico, paciente)
-CREATE TABLE tb_usuario (
-  pk_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  ds_nome VARCHAR(100) NOT NULL,
-  ds_email VARCHAR(100) UNIQUE NOT NULL,
-  ds_senha VARCHAR(255) NOT NULL,
-  ds_tipo VARCHAR(20) NOT NULL, -- 'admin', 'medico', 'paciente'
-  tg_ativo BOOLEAN DEFAULT TRUE
-);
+## ✅ ConsultasController – *Wilson*
+- [ ] Criar  
+- [ ] Cancelar  
+- [ ] Confirmar  
+- [ ] Listar por Paciente  
+- [ ] Listar por Médico  
+- [ ] Listar por Data  
 
--- 🧑‍⚕️ Médicos
-CREATE TABLE tb_medico (
-  pk_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  fk_usuario BIGINT NOT NULL,
-  ds_crm VARCHAR(20) NOT NULL,
-  ds_especialidade VARCHAR(50) NOT NULL,
-  FOREIGN KEY (fk_usuario) REFERENCES tb_usuario(pk_id)
-);
+---
 
--- 👤 Pacientes
-CREATE TABLE tb_paciente (
-  pk_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  fk_usuario BIGINT NOT NULL,
-  dt_nascimento DATE,
-  ds_telefone VARCHAR(20),
-  ds_rg VARCHAR(20),
-  FOREIGN KEY (fk_usuario) REFERENCES tb_usuario(pk_id)
-);
-
--- 📅 Consultas
-CREATE TABLE tb_consulta (
-  pk_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  fk_medico BIGINT NOT NULL,
-  fk_paciente BIGINT NOT NULL,
-  dt_hora DATETIME NOT NULL,
-  ds_status VARCHAR(20) NOT NULL DEFAULT 'confirmada', -- confirmada, realizada, faltou, cancelada
-  FOREIGN KEY (fk_medico) REFERENCES tb_medico(pk_id),
-  FOREIGN KEY (fk_paciente) REFERENCES tb_paciente(pk_id)
-);
-
--- 📂 Prontuário
-CREATE TABLE tb_prontuario (
-  pk_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-  fk_consulta BIGINT NOT NULL,
-  ds_diagnostico TEXT,
-  ds_receita TEXT,
-  ds_exames TEXT,
-  dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (fk_consulta) REFERENCES tb_consulta(pk_id)
-);
+## ✅ ReceitaController – *Ryan*
+- [ ] Criar  
+- [ ] Listar por Paciente  
+- [ ] Listar por Médico  
 
 
+### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
 
+##### **Matheus**
+- **Cadastro de Pacientes (CRUD):** Formulário e validação de CPF. Listagem, edição e exclusão de pacientes.
+- **Login e Autenticação:** Implementação de login (E-mail e Senha). Redirecionamento após login.
+- **Gerenciamento de Usuários:** Administração de usuários e permissões de acesso.
+
+##### **Murilo**
+- **Cadastro de Médicos (CRUD):** Formulário e listagem de médicos.
+- **Agendamento de Consultas:** Agendamento, confirmação e cancelamento de consultas.
+
+##### **Guilherme**
+- **Consulta e Prontuário:** Visualização do histórico médico e registro de atendimentos.
+- **Dashboard:** Exibição das principais informações no dashboard.
+
+##### **Ednilton**
+- **Emissão de Receitas:** Emissão e impressão de receitas médicas.
+
+- **Consultas Realizadas:** Exibição e edição de consultas realizadas.
+##### **Wilson**
+- **Consultas (CRUD):** CRUD de consultas (agendamento, visualização, edição e cancelamento).
+- **Gerenciamento de Consultas Realizadas:** Exibição e edição de consultas realizadas.
+
+##### **Lucas**
+- **Prontuário Médico (CRUD):** CRUD de prontuários médicos e vinculação com pacientes e médicos.

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import api from '../services/api';
+import { loginUsuario } from '../services/loginService';
 import '../styles/login.css';
-
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -13,46 +12,52 @@ function Login() {
     setErro('');
 
     try {
-      const response = await api.post('http://localhost:7070/api/usuarios', { email, senha });
-      
-      // Sucesso → guarda o usuário no localStorage
-      localStorage.setItem('usuario', JSON.stringify(response.data));
+      const token = await loginUsuario(email, senha);
+      localStorage.setItem('token', token);
       alert('Login realizado com sucesso!');
-      
-      // Redireciona (exemplo)
       window.location.href = '/dashboard';
     } catch (err) {
-      setErro('Usuário ou senha inválidos');
+      setErro('Email ou senha inválidos.');
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-box">
-        <h2>Login</h2>
+        <h2 className="login-title">Login</h2>
         <form onSubmit={handleLogin}>
-          <div>
-            <label>Email:</label>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
             <input 
-              type="email" 
+              id="email"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required />
+              required
+            />
           </div>
-          <div>
-            <label>Senha:</label>
+          
+          <div className="form-group">
+            <label htmlFor="senha">Senha:</label>
             <input 
-              type="password" 
+              id="senha"
+              type="password"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
-              required />
+              required
+            />
           </div>
-          {erro && <p>{erro}</p>}
-          <button type="submit">Entrar</button>
+
+          {erro && <div className="erro">{erro}</div>}
+
+          <button type="submit" className="btn-login">Entrar</button>
         </form>
-        <p className="forgot-password">
+
+        <div className="action-links">
           <a href="/recuperar-senha">Esqueci minha senha</a>
-        </p>
+          
+        </div>
+
       </div>
     </div>
   );

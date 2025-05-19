@@ -1,11 +1,10 @@
 package com.pi.medsync.model;
 
 import jakarta.persistence.*;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "tb_paciente")
+@Table(name = "TB_PACIENTES")
 public class Paciente {
 
     @Id
@@ -19,8 +18,8 @@ public class Paciente {
     @Column(name = "ds_cpf", nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(name = "dt_nascimento")
-    private Date nascimento;
+    @Column(name = "dt_nascimento", nullable = false)
+    private LocalDate nascimento;
 
     @Column(name = "ds_telefone", length = 20)
     private String telefone;
@@ -31,7 +30,21 @@ public class Paciente {
     @Column(name = "ds_plano_saude", length = 50)
     private String planoSaude;
 
-    // Getters and Setters
+    // Construtor padrão
+    public Paciente() {}
+
+    // Construtor com campos
+    public Paciente(Long id, String nome, String cpf, LocalDate nascimento, String telefone, String endereco, String planoSaude) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.planoSaude = planoSaude;
+    }
+
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -56,11 +69,11 @@ public class Paciente {
         this.cpf = cpf;
     }
 
-    public Date getNascimento() {
+    public LocalDate getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(Date nascimento) {
+    public void setNascimento(LocalDate nascimento) {
         this.nascimento = nascimento;
     }
 

@@ -17,8 +17,11 @@
 	<description>Projeto PI</description>
 
 	<properties>
-		<java.version>21</java.version> <!-- Certifique-se de que está usando a versão correta do Java -->
+		<java.version>23</java.version>
+		<maven.compiler.source>23</maven.compiler.source>
+		<maven.compiler.target>23</maven.compiler.target>
 	</properties>
+
 
 	<dependencies>
 		<!-- Dependência do Spring Boot Data JPA para persistência -->
@@ -32,6 +35,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 
 		<!-- Dependência do H2 Database para banco de dados em memória (ou substitua por MySQL/PostgreSQL) -->
 		<dependency>
@@ -58,11 +62,23 @@
 
 	<build>
 		<plugins>
-			<!-- Plugin para empacotar a aplicação como um JAR ou WAR e executá-la com o Spring Boot -->
+			<!-- já existente: Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- ADICIONE este: -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
 </project>

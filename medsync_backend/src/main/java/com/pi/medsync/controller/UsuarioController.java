@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.pi.medsync.service.AuthService;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,44 +20,51 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private AuthService authService;
 
-    // Listar todos os usuários
+
     @GetMapping
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }
 
-    // Buscar por ID
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
+        String token = String.valueOf(authService.autenticar(usuario.getEmail(), usuario.getSenha()));
+
+        if (token != null) {
+            return ResponseEntity.ok().body(token);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+    }
+
     @GetMapping("/{id}")
     public Optional<Usuario> buscarPorId(@PathVariable Long id) {
         return usuarioRepository.findById(id);
     }
 
-    // Criar novo usuário
     @PostMapping
     public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) {
-        // Você pode adicionar outras validações aqui, como verificar se o email já existe
         if (usuarioService.buscarPorEmail(usuario.getEmail()) != null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // Email já cadastrado
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Usuario usuarioCriado = usuarioService.criarUsuario(usuario);
         return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
     }
 
-    // Atualizar usuário existente
+
     @PutMapping("/{id}")
     public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow();
         usuario.setNome(usuarioAtualizado.getNome());
         usuario.setEmail(usuarioAtualizado.getEmail());
         usuario.setSenha(usuarioAtualizado.getSenha());
-        usuario.setTipo(usuarioAtualizado.getTipo());
-        usuario.setAtivo(usuarioAtualizado.isAtivo());
         return usuarioRepository.save(usuario);
     }
 
-    // Deletar usuário
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         usuarioRepository.deleteById(id);

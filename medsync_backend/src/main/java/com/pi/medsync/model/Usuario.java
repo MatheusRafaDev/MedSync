@@ -1,86 +1,75 @@
 package com.pi.medsync.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "TB_USUARIOS")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
-    private Long pkId;
+    private Long idUsuario;
 
-    @Column(name = "ds_nome", nullable = false)
+    @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "ds_email", unique = true, nullable = false)
+    @Column(name = "EMAIL", nullable = false, unique = true, length = 100)
     private String email;
 
-    @Column(name = "ds_senha", nullable = false)
+    @Column(name = "SENHA", nullable = false, length = 255)
     private String senha;
 
-    @Column(name = "ds_tipo", nullable = false)
-    private String tipo;
+    @Column(name = "PERFIL", nullable = false, length = 50)
+    private String perfil;
 
-    @Column(name = "tg_ativo")
-    private boolean ativo = true;
+    public Usuario() {}
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Medico medico;
-
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Paciente paciente;
-
-    // Getters and Setters
-    public Long getPkId() {
-        return pkId;
+    public Usuario(Long idUsuario, String nome, String email, String senha, String perfil) {
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
     }
-    public void setPkId(Long pkId) {
-        this.pkId = pkId;
+
+    // Getters e Setters
+    public Long getIdUsuario() {
+        return idUsuario;
     }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getSenha() {
         return senha;
     }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public String getTipo() {
-        return tipo;
+
+    public String getPerfil() {
+        return perfil;
     }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    public boolean isAtivo() {
-        return ativo;
-    }
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-    public Medico getMedico() {
-        return medico;
-    }
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-    public Paciente getPaciente() {
-        return paciente;
-    }
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
     }
 }
-

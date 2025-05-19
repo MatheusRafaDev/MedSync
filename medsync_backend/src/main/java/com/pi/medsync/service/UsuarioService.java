@@ -11,15 +11,11 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Método para criar um novo usuário
-    public Usuario criarUsuario(Usuario usuario) {
-        // Você pode adicionar mais validações aqui, como checar se o email já existe
 
-        // Salvar o novo usuário no banco de dados
+    public Usuario criarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    // Método para buscar um usuário pelo email (exemplo adicional)
     public Usuario buscarPorEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }

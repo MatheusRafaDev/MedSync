@@ -1,53 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import InputMask from 'react-input-mask';
+import { IMaskInput } from 'react-imask';
+import { cadastrarPaciente } from '../services/cadastroPacienteService'; 
 import '../styles/cadastro_paciente.css';
 
 const CadastroPaciente = () => {
   const navigate = useNavigate();
 
   const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [confirmarSenha, setConfirmarSenha] = useState('');
   const [nascimento, setNascimento] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [rg, setRg] = useState('');
+
+  const [cpf, setCpf] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [planoSaude, setPlanoSaude] = useState('');
   const [erro, setErro] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (senha !== confirmarSenha) {
-      setErro('As senhas não coincidem.');
-      return;
-    }
-
     try {
-      const response = await axios.post('http://localhost:7070/api/usuarios', {
-        nome,
-        email,
-        senha,
-        tipo: 'PACIENTE',
-      });
+      const status = await cadastrarPaciente(nome, nascimento, telefone, cpf, endereco, planoSaude);
 
-      const usuarioId = response.data.pkId;
-
-      const pacienteData = {
-        fk_usuario: usuarioId,
-        dt_nascimento: nascimento,
-        ds_telefone: telefone,
-        ds_rg: rg,
-      };
-
-      await axios.post('http://localhost:7070/api/pacientes', pacienteData);
-
-      if (response.status === 200) {
+      if (status === 200) {
         navigate('/login');
       }
     } catch (error) {
-      setErro('Erro ao criar a conta. Tente novamente.');
+      setErro(error.message);
     }
   };
 
@@ -68,90 +47,62 @@ const CadastroPaciente = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="senha">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="confirmarSenha">Confirmar Senha</label>
-          <input
-            type="password"
-            id="confirmarSenha"
-            value={confirmarSenha}
-            onChange={(e) => setConfirmarSenha(e.target.value)}
+          <label htmlFor="cpf">CPF</label>
+          <IMaskInput
+            mask="000.000.000-00"
+            value={cpf}
+            onAccept={(value) => setCpf(value)}
+            placeholder="000.000.000-00"
+            id="cpf"
             required
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="nascimento">Data de Nascimento</label>
-          <InputMask
-            mask="99/99/9999"
+          <IMaskInput
+            mask="00/00/0000"
             value={nascimento}
-            onChange={(e) => setNascimento(e.target.value)}
-          >
-            {(inputProps) => (
-              <input
-                {...inputProps}
-                type="text"
-                id="nascimento"
-                required
-              />
-            )}
-          </InputMask>
+            onAccept={(value) => setNascimento(value)}
+            placeholder="dd/mm/aaaa"
+            id="nascimento"
+            required
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="telefone">Telefone</label>
-          <InputMask
-            mask="(99) 99999-9999"
+          <IMaskInput
+            mask="(00) 00000-0000"
             value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
-          >
-            {(inputProps) => (
-              <input
-                {...inputProps}
-                type="text"
-                id="telefone"
-                required
-              />
-            )}
-          </InputMask>
+            onAccept={(value) => setTelefone(value)}
+            placeholder="(99) 99999-9999"
+            id="telefone"
+            required
+          />
+        </div>
+
+
+        <div className="form-group">
+          <label htmlFor="endereco">Endereço</label>
+          <input
+            type="text"
+            id="endereco"
+            value={endereco}
+            onChange={(e) => setEndereco(e.target.value)}
+            required
+          />
         </div>
 
         <div className="form-group">
-          <label htmlFor="rg">RG</label>
-          <InputMask
-            mask="99.999.999-9"
-            value={rg}
-            onChange={(e) => setRg(e.target.value)}
-          >
-            {(inputProps) => (
-              <input
-                {...inputProps}
-                type="text"
-                id="rg"
-                required
-              />
-            )}
-          </InputMask>
+          <label htmlFor="planoSaude">Plano de Saúde</label>
+          <input
+            type="text"
+            id="planoSaude"
+            value={planoSaude}
+            onChange={(e) => setPlanoSaude(e.target.value)}
+            required
+          />
         </div>
 
         <button type="submit" className="submit-button">
