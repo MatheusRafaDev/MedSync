@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProntuarioService {
@@ -21,5 +22,21 @@ public class ProntuarioService {
     public Prontuario salvar(Prontuario prontuario) {
         prontuario.setDtRegistro(LocalDateTime.now());
         return repository.save(prontuario);
+    }
+
+    public List<Prontuario> listarTodos() {
+        return repository.findAll();
+    }
+
+    public Optional<Prontuario> buscarPorId(Long id) {
+        return repository.findById(id);
+    }
+
+    public boolean deletar(Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

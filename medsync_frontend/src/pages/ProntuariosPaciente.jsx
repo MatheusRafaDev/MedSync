@@ -5,13 +5,23 @@ const ProntuariosPaciente = ({ idPaciente, idMedico }) => {
   const [prontuarios, setProntuarios] = useState([]);
   const [descricao, setDescricao] = useState("");
   const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
 
-  useEffect(() => {
+  const carregarProntuarios = () => {
+    setCarregando(true);
     axios.get(`/api/prontuarios/paciente/${idPaciente}`)
       .then(response => {
-        setProntuarios(response.data);
-        setCarregando(false);
-      });
+        const ordenados = response.data.sort(
+          (a, b) => new Date(b.dtRegistro) - new Date(a.dtRegistro)
+        );
+        setProntuarios(ordenados);
+      })
+      .catch(() => setErro("Erro ao carregar prontuários"))
+      .finally(() => setCarregando(false));
+  };
+
+  useEffect(() => {
+    carregarProntuarios();
   }, [idPaciente]);
 
   const handleSalvar = () => {
@@ -26,13 +36,21 @@ const ProntuariosPaciente = ({ idPaciente, idMedico }) => {
     axios.post("/api/prontuarios", novoProntuario)
       .then(() => {
         setDescricao("");
-        return axios.get(`/api/prontuarios/paciente/${idPaciente}`);
+        carregarProntuarios();
       })
-      .then(response => setProntuarios(response.data))
-      .catch(err => alert("Erro ao salvar prontuário"));
+      .catch(() => alert("Erro ao salvar prontuário"));
+  };
+
+  const handleDeletar = (idProntuario) => {
+    if (!window.confirm("Deseja realmente excluir este prontuário?")) return;
+
+    axios.delete(`/api/prontuarios/${idProntuario}`)
+      .then(() => carregarProntuarios())
+      .catch(() => alert("Erro ao deletar prontuário"));
   };
 
   if (carregando) return <p>Carregando prontuários...</p>;
+  if (erro) return <p className="text-red-600">{erro}</p>;
 
   return (
     <div className="max-w-3xl mx-auto p-4">
@@ -56,11 +74,23 @@ const ProntuariosPaciente = ({ idPaciente, idMedico }) => {
       <ul className="space-y-4">
         {prontuarios.map((item) => (
           <li key={item.idProntuario} className="border p-3 rounded shadow">
-            <p className="text-sm text-gray-600">
-              {new Date(item.dtRegistro).toLocaleString()}
-            </p>
-            <p className="font-semibold">Médico: {item.medico?.dsNome || "Desconhecido"}</p>
-            <p>{item.dsDescricao}</p>
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-sm text-gray-600">
+                  {new Date(item.dtRegistro).toLocaleString()}
+                </p>
+                <p className="font-semibold">
+                  Médico: {item.medico?.dsNome || "Desconhecido"}
+                </p>
+                <p>{item.dsDescricao}</p>
+              </div>
+              <button
+                onClick={() => handleDeletar(item.idProntuario)}
+                className="text-red-600 hover:underline text-sm"
+              >
+                Excluir
+              </button>
+            </div>
           </li>
         ))}
       </ul>
