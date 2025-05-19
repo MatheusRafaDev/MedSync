@@ -94,27 +94,27 @@ Armazena as receitas médicas.
 
 ## ✅ PacienteController – *Guilherme*
 - [x] Criar  
-- [ ] Atualizar  
-- [ ] Deletar  
-- [ ] Listar Todos  
-- [ ] Listar por ID  
+- [x] Atualizar  
+- [x] Deletar  
+- [x] Listar Todos  
+- [x] Listar por ID  
 
 ---
 
 ## ✅ ProntuarioController – *Lucas*
 - [x] Listar por Paciente  
 - [x] Criar  
-- [ ] Deletar  
-- [ ] Listar Todos  
-- [ ] Listar por ID  
+- [x] Deletar  
+- [x] Listar Todos  
+- [x] Listar por ID  
 
 ---
 
 ## ✅ MedicoController – *Murilo*
-- [ ] Criar  
-- [ ] Deletar  
-- [ ] Listar Todos  
-- [ ] Listar por ID  
+- [x] Criar  
+- [x] Deletar  
+- [x] Listar Todos  
+- [x] Listar por ID  
 
 ---
 
@@ -130,8 +130,8 @@ Armazena as receitas médicas.
 
 ## ✅ ReceitaController – *Ryan*
 - [ ] Criar  
-- [ ] Listar por Paciente  
-- [ ] Listar por Médico  
+- [x] Listar por Paciente  
+- [x] Listar por Médico  
 
 
 ### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
