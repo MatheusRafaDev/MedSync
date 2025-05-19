@@ -130,8 +130,8 @@ Armazena as receitas médicas.
 
 ## ✅ ReceitaController – *Ryan*
 - [ ] Criar  
-- [x] Listar por Paciente  
-- [x] Listar por Médico  
+- [ ] Listar por Paciente  
+- [ ] Listar por Médico  
 
 
 ### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
