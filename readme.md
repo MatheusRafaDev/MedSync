@@ -88,7 +88,7 @@ Armazena as receitas médicas.
 - [x] Atualizar  
 - [x] Listar Todos  
 - [x] Deletar  
-- [ ] Listar por ID  
+- [x] Listar por ID  
 
 ---
 
