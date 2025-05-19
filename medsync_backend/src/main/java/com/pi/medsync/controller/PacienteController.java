@@ -16,7 +16,7 @@ public class PacienteController {
     @Autowired
     private PacienteRepository pacienteRepository;
 
-    // Endpoint para criar um novo paciente
+    // Criar um novo paciente
     @PostMapping
     public ResponseEntity<Paciente> createPaciente(@RequestBody Paciente paciente) {
         try {
@@ -27,30 +27,32 @@ public class PacienteController {
         }
     }
 
-    // Endpoint para listar todos os pacientes
+    // Listar todos os pacientes
     @GetMapping
     public List<Paciente> getAllPacientes() {
         return pacienteRepository.findAll();
     }
 
-    // Endpoint para obter um paciente específico
+    // Obter um paciente por ID
     @GetMapping("/{id}")
     public ResponseEntity<Paciente> getPacienteById(@PathVariable Long id) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);
         return paciente.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Endpoint para atualizar os dados de um paciente
+    // Atualizar um paciente
     @PutMapping("/{id}")
     public ResponseEntity<Paciente> updatePaciente(@PathVariable Long id, @RequestBody Paciente pacienteDetails) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);
 
         if (paciente.isPresent()) {
             Paciente pacienteExistente = paciente.get();
+            pacienteExistente.setNome(pacienteDetails.getNome());
+            pacienteExistente.setCpf(pacienteDetails.getCpf());
             pacienteExistente.setNascimento(pacienteDetails.getNascimento());
             pacienteExistente.setTelefone(pacienteDetails.getTelefone());
-            pacienteExistente.setRg(pacienteDetails.getRg());
-            pacienteExistente.setUsuario(pacienteDetails.getUsuario());  // Atualiza o usuário, caso necessário
+            pacienteExistente.setEndereco(pacienteDetails.getEndereco());
+            pacienteExistente.setPlanoSaude(pacienteDetails.getPlanoSaude());
 
             Paciente updatedPaciente = pacienteRepository.save(pacienteExistente);
             return ResponseEntity.ok(updatedPaciente);
@@ -59,7 +61,7 @@ public class PacienteController {
         }
     }
 
-    // Endpoint para excluir um paciente
+    // Excluir um paciente
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePaciente(@PathVariable Long id) {
         Optional<Paciente> paciente = pacienteRepository.findById(id);

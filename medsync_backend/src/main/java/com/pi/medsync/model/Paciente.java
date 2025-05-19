@@ -2,7 +2,6 @@ package com.pi.medsync.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -11,51 +10,81 @@ public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_id")
-    private Long pkId;
+    @Column(name = "id_paciente")
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "fk_usuario")
-    private Usuario usuario;
+    @Column(name = "ds_nome", nullable = false, length = 100)
+    private String nome;
+
+    @Column(name = "ds_cpf", nullable = false, unique = true, length = 14)
+    private String cpf;
 
     @Column(name = "dt_nascimento")
-    private LocalDateTime nascimento;
+    private Date nascimento;
 
-    @Column(name = "ds_telefone")
+    @Column(name = "ds_telefone", length = 20)
     private String telefone;
 
-    @Column(name = "ds_rg")
-    private String rg;
+    @Column(name = "ds_endereco", columnDefinition = "TEXT")
+    private String endereco;
+
+    @Column(name = "ds_plano_saude", length = 50)
+    private String planoSaude;
 
     // Getters and Setters
-    public Long getPkId() {
-        return pkId;
+    public Long getId() {
+        return id;
     }
-    public void setPkId(Long pkId) {
-        this.pkId = pkId;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-    public Usuario getUsuario() {
-        return usuario;
+
+    public String getNome() {
+        return nome;
     }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    public LocalDateTime getNascimento() {
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getNascimento() {
         return nascimento;
     }
-    public void setNascimento(LocalDateTime nascimento) {
+
+    public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
     }
+
     public String getTelefone() {
         return telefone;
     }
+
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public String getRg() {
-        return rg;
+
+    public String getEndereco() {
+        return endereco;
     }
-    public void setRg(String rg) {
-        this.rg = rg;
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getPlanoSaude() {
+        return planoSaude;
+    }
+
+    public void setPlanoSaude(String planoSaude) {
+        this.planoSaude = planoSaude;
     }
 }
