@@ -39,4 +39,51 @@ public class Consulta {
         this.dsObservacoes = dsObservacoes;
     }
 
+    public Long getIdConsulta() {
+        return idConsulta;
+    }
+
+    public void setIdConsulta(Long idConsulta) {
+        this.idConsulta = idConsulta;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public LocalDateTime getDtConsulta() {
+        return dtConsulta;
+    }
+
+    public void setDtConsulta(LocalDateTime dtConsulta) {
+        this.dtConsulta = dtConsulta;
+    }
+
+    public String getDsStatus() {
+        return dsStatus;
+    }
+
+    public void setDsStatus(String dsStatus) {
+        this.dsStatus = dsStatus;
+    }
+
+    public String getDsObservacoes() {
+        return dsObservacoes;
+    }
+
+    public void setDsObservacoes(String dsObservacoes) {
+        this.dsObservacoes = dsObservacoes;
+    }
 }

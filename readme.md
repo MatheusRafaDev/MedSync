@@ -119,19 +119,19 @@ Armazena as receitas médicas.
 ---
 
 ## ✅ ConsultasController – *Wilson*
-- [ ] Criar  
-- [ ] Cancelar  
-- [ ] Confirmar  
-- [ ] Listar por Paciente  
-- [ ] Listar por Médico  
-- [ ] Listar por Data  
+- [x] Criar  
+- [x] Cancelar  
+- [x] Confirmar  
+- [x] Listar por Paciente  
+- [x] Listar por Médico  
+- [x] Listar por Data  
 
 ---
 
 ## ✅ ReceitaController – *Ryan*
-- [ ] Criar  
-- [ ] Listar por Paciente  
-- [ ] Listar por Médico  
+- [x] Criar  
+- [x] Listar por Paciente  
+- [x] Listar por Médico  
 
 
 ### Tarefas de Desenvolvimento - Sistema de Consultas Médicas
