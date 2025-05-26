@@ -34,4 +34,43 @@ public class Receita {
         this.dtEmissao = dtEmissao;
     }
 
+    public Long getIdReceita() {
+        return idReceita;
+    }
+
+    public void setIdReceita(Long idReceita) {
+        this.idReceita = idReceita;
+    }
+
+    public Consulta getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
+    }
+
+    public String getDsMedicamentos() {
+        return dsMedicamentos;
+    }
+
+    public void setDsMedicamentos(String dsMedicamentos) {
+        this.dsMedicamentos = dsMedicamentos;
+    }
+
+    public String getDsOrientacoes() {
+        return dsOrientacoes;
+    }
+
+    public void setDsOrientacoes(String dsOrientacoes) {
+        this.dsOrientacoes = dsOrientacoes;
+    }
+
+    public LocalDateTime getDtEmissao() {
+        return dtEmissao;
+    }
+
+    public void setDtEmissao(LocalDateTime dtEmissao) {
+        this.dtEmissao = dtEmissao;
+    }
 }
