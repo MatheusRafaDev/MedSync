@@ -2,6 +2,7 @@ package com.pi.medsync.controller;
 
 import com.pi.medsync.model.Paciente;
 import com.pi.medsync.service.PacienteService;
+import com.pi.medsync.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import java.util.Optional;
 @RequestMapping("/api/pacientes")
 @CrossOrigin
 public class PacienteController {
+
+    @Autowired
+    private PacienteRepository pacienteRepository;
 
     @Autowired
     private PacienteService pacienteService;

@@ -21,3 +21,4 @@ function homeAdministrativo() {
         </section>
     )
 }
+export default homeAdministrativo;

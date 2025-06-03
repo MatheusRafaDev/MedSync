@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/receitas") // Prefixo comum para as rotas da controller
-public class ReceitaController {
+public class ReceitasController {
 
     @GetMapping("/pacientes")
     public String telaListarPacientes() {
