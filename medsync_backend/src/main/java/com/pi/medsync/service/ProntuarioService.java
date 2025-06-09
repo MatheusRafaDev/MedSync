@@ -15,7 +15,7 @@ public class ProntuarioService {
     private ProntuarioRepository repository;
 
     public List<Prontuario> listarPorPaciente(Long idPaciente) {
-        return repository.findByPacienteIdPaciente(idPaciente);
+        return repository.findByPacienteId(idPaciente);
     }
 
     public Prontuario salvar(Prontuario prontuario) {
